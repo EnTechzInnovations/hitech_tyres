@@ -2597,6 +2597,39 @@
       function scrollD() { setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 50); }
     })();
   </script>
+
+
+#  Enquiry Form Submission Handler
+
+<script>
+  function doSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const name    = form.querySelector('input[type="text"]').value;
+    const phone   = form.querySelector('input[type="tel"]').value;
+    const vehicle = form.querySelectorAll('input[type="text"]')[1].value || 'Not specified';
+    const service = form.querySelector('select').value || 'Not selected';
+    const notes   = form.querySelector('textarea').value || 'None';
+
+    const subject = encodeURIComponent('New Appointment Enquiry – ' + name);
+    const body = encodeURIComponent(
+      'New Appointment Enquiry\n' +
+      '========================\n\n' +
+      'Name        : ' + name    + '\n' +
+      'Phone       : ' + phone   + '\n' +
+      'Vehicle     : ' + vehicle + '\n' +
+      'Service     : ' + service + '\n' +
+      'Notes       : ' + notes   + '\n\n' +
+      '– Sent from your website enquiry form'
+    );
+
+    window.location.href =
+      'mailto:amaljames0007@gmail.com?subject=' + subject + '&body=' + body;
+  }
+</script>
+
+
 </body>
 
 </html>

@@ -1902,6 +1902,20 @@
       #chatWindow {
         bottom: calc(env(safe-area-inset-bottom) + 82px);
       }
+
+      /* Phone call Redirect  */
+      .ccard-val a {
+        color: inherit;
+        text-decoration: none;
+
+      }
+
+      /* Redirect to Google Map */
+
+      .ccard-val a {
+        color: inherit;
+        text-decoration: none;
+      }
     }
   </style>
 </head>
@@ -2358,7 +2372,11 @@
               </svg></div>
             <div>
               <div class="ccard-lbl">Location</div>
-              <div class="ccard-val">Hi-Tech Tyres,<br>VDL Plaza, Paravattani, Thrissur</div>
+              <div class="ccard-val">
+                <a href="https://maps.app.goo.gl/tMqkVMzJA3NR3zcQ6?g_st=ac" target="_blank">
+                  Hi-Tech Tyres,<br>VDL Plaza, Paravattani, Thrissur
+                </a>
+              </div>
             </div>
           </div>
           <div class="ccard">
@@ -2369,7 +2387,9 @@
               </svg></div>
             <div>
               <div class="ccard-lbl">Phone</div>
-              <div class="ccard-val">+91 9400756622</div>
+              <div class="ccard-val">
+                <a href="tel:+919400756622">+91 9400756622</a>
+              </div>
             </div>
           </div>
           <div class="ccard">
@@ -2427,8 +2447,7 @@
   </section>
 
   <footer>
-    <img class="footer-top-img" src="images/Lamborghini.jpg"
-      alt="Road" loading="lazy" />
+    <img class="footer-top-img" src="images/Lamborghini.jpg" alt="Road" loading="lazy" />
     <div class="footer-body">
       <div class="footer-brand">
         <a class="logo" href="#" style="display:inline-flex;"><svg width="36" height="36" viewBox="0 0 100 100"
@@ -2599,35 +2618,35 @@
   </script>
 
 
-#  Enquiry Form Submission Handler
+  <!-- # Enquiry Form Submission Handler -->
 
-<script>
-  function doSubmit(event) {
-    event.preventDefault();
+  <script>
+    function doSubmit(event) {
+      event.preventDefault();
 
-    const form = event.target;
-    const name    = form.querySelector('input[type="text"]').value;
-    const phone   = form.querySelector('input[type="tel"]').value;
-    const vehicle = form.querySelectorAll('input[type="text"]')[1].value || 'Not specified';
-    const service = form.querySelector('select').value || 'Not selected';
-    const notes   = form.querySelector('textarea').value || 'None';
+      const form = event.target;
+      const name = form.querySelector('input[type="text"]').value;
+      const phone = form.querySelector('input[type="tel"]').value;
+      const vehicle = form.querySelectorAll('input[type="text"]')[1].value || 'Not specified';
+      const service = form.querySelector('select').value || 'Not selected';
+      const notes = form.querySelector('textarea').value || 'None';
 
-    const subject = encodeURIComponent('New Appointment Enquiry – ' + name);
-    const body = encodeURIComponent(
-      'New Appointment Enquiry\n' +
-      '========================\n\n' +
-      'Name        : ' + name    + '\n' +
-      'Phone       : ' + phone   + '\n' +
-      'Vehicle     : ' + vehicle + '\n' +
-      'Service     : ' + service + '\n' +
-      'Notes       : ' + notes   + '\n\n' +
-      '– Sent from your website enquiry form'
-    );
+      const subject = encodeURIComponent('New Appointment Enquiry – ' + name);
+      const body = encodeURIComponent(
+        'New Appointment Enquiry\n' +
+        '========================\n\n' +
+        'Name        : ' + name + '\n' +
+        'Phone       : ' + phone + '\n' +
+        'Vehicle     : ' + vehicle + '\n' +
+        'Service     : ' + service + '\n' +
+        'Notes       : ' + notes + '\n\n' +
+        '– Sent from your website enquiry form'
+      );
 
-    window.location.href =
-      'mailto:amaljames0007@gmail.com?subject=' + subject + '&body=' + body;
-  }
-</script>
+      window.location.href =
+        'mailto:amaljames0007@gmail.com?subject=' + subject + '&body=' + body;
+    }
+  </script>
 
 
 </body>

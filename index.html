@@ -55,28 +55,6 @@
       transition: width .1s;
     }
 
-    /* ── NAV ── */
-    /* nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-      height: 72px;
-      background: rgba(5, 13, 26, .0);
-      border-bottom: 1px solid rgba(33, 150, 243, .2);
-      transition: all .3s;
-    }
-
-    nav.scrolled {
-      background: #050d1a;
-      box-shadow: 0 4px 30px #000;
-    } */
-
     nav {
       position: fixed;
       top: 0;
@@ -89,15 +67,12 @@
       padding: 0 5%;
       height: 72px;
       background: #050d1a;
-      /* Always fixed color */
       border-bottom: 1px solid rgba(33, 150, 243, .2);
       transition: all .3s;
     }
 
-    /* Optional: keep only shadow on scroll */
     nav.scrolled {
       background: #050d1a;
-      /* same color */
       box-shadow: 0 4px 30px #000;
     }
 
@@ -141,7 +116,7 @@
     }
 
     .nav-links a {
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .9rem;
@@ -220,11 +195,12 @@
       color: var(--yellow);
     }
 
-    /* ═══════════════════════════════
-       HERO CAROUSEL
-    ═══════════════════════════════ */
+    /* #hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;padding:110px 5% 70px;} */
+
     #hero {
       min-height: 100vh;
+      height: 100vh;
+      /* ← ADD THIS */
       position: relative;
       display: flex;
       align-items: center;
@@ -232,12 +208,13 @@
       padding: 110px 5% 70px;
     }
 
-    /* Slide track */
     .carousel-track {
       position: absolute;
       inset: 0;
       display: flex;
       width: 300%;
+      height: 100%;
+      /* ← ADD THIS */
       transition: transform .9s cubic-bezier(.77, 0, .175, 1);
     }
 
@@ -245,17 +222,22 @@
       flex: 0 0 33.333%;
       position: relative;
       overflow: hidden;
+      height: 100%;
+      /* ← ADD THIS */
     }
 
     .carousel-slide img {
       width: 100%;
       height: 100%;
+      /* was missing */
       object-fit: cover;
       display: block;
-      animation: none;
+      position: absolute;
+      /* ← ADD THIS */
+      inset: 0;
+      /* ← ADD THIS */
     }
 
-    /* Ken Burns on active slide */
     .carousel-slide.active img {
       animation: kenburns 7s ease forwards;
     }
@@ -270,36 +252,38 @@
       }
     }
 
-    /* overlays sit on top of track */
-    /* .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(105deg,rgba(5,13,26,.97) 0%,rgba(5,13,26,.82) 50%,rgba(5,13,26,.4) 100%);pointer-events:none;}
-    .hero-overlay2{position:absolute;inset:0;z-index:3;background:radial-gradient(ellipse 70% 80% at 0% 50%,rgba(21,101,192,.22) 0%,transparent 70%);pointer-events:none;}
-    .tread{position:absolute;bottom:0;left:0;right:0;height:5px;z-index:4;background:repeating-linear-gradient(90deg,var(--yellow) 0,var(--yellow) 18px,transparent 18px,transparent 32px);opacity:.55;} */
-
-
-    .hero-overlay {
+    /* .hero-overlay {
       background: linear-gradient(105deg, #050d1a 0%, #0c1829 50%, #1a2f4a 100%);
     }
 
     .hero-overlay2 {
       background: linear-gradient(to right, #0d2040, #050d1a);
+    } */
+
+    /* .hero-overlay {
+      background: linear-gradient(105deg, rgba(5, 13, 26, 0.75) 0%, rgba(12, 24, 41, 0.55) 50%, rgba(26, 47, 74, 0.35) 100%);
     }
+
+    .hero-overlay2 {
+      background: linear-gradient(to right, rgba(13, 32, 64, 0.6), rgba(5, 13, 26, 0.2));
+    } */
 
     .tread {
       background: repeating-linear-gradient(90deg, var(--yellow) 0, var(--yellow) 18px, var(--dark) 18px, var(--dark) 32px);
       opacity: 1;
     }
 
-    /* slide text (different per slide) */
     .slide-caption {
       position: absolute;
       inset: 0;
-      z-index: 3;
+      z-index: 5;
       display: flex;
       align-items: center;
       padding: 0 5%;
       opacity: 0;
       transition: opacity .6s .3s;
       pointer-events: none;
+      background: none;
     }
 
     .carousel-slide.active .slide-caption {
@@ -307,45 +291,8 @@
       pointer-events: all;
     }
 
-    /* Hero text */
     .hero-content {
       max-width: 650px;
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      background: rgba(33, 150, 243, .14);
-      border: 1px solid rgba(33, 150, 243, .4);
-      padding: 6px 18px;
-      margin-bottom: 22px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--blue4);
-    }
-
-    .hero-pill .dot {
-      width: 7px;
-      height: 7px;
-      background: var(--blue3);
-      border-radius: 50%;
-      animation: blink 2s infinite;
-    }
-
-    @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: .3
-      }
     }
 
     .hero-h1 {
@@ -428,7 +375,6 @@
       transform: translateY(-2px);
     }
 
-    /* Carousel arrows */
     .car-arrow {
       position: absolute;
       top: 50%;
@@ -443,7 +389,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background .2s, transform .3s;
+      transition: background .2s;
       clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
     }
 
@@ -460,7 +406,6 @@
       right: 24px;
     }
 
-    /* Carousel dots */
     .car-dots {
       position: absolute;
       bottom: 28px;
@@ -487,7 +432,6 @@
       transform: scale(1.3);
     }
 
-    /* Slide counter */
     .car-counter {
       position: absolute;
       bottom: 28px;
@@ -503,7 +447,6 @@
       color: var(--yellow);
     }
 
-    /* progress bar */
     .car-progress {
       position: absolute;
       bottom: 0;
@@ -515,7 +458,6 @@
       opacity: .7;
     }
 
-    /* STATS */
     .stats {
       display: flex;
       flex-wrap: wrap;
@@ -549,7 +491,6 @@
       color: rgba(255, 255, 255, .7);
     }
 
-    /* SECTION COMMON */
     .sec {
       padding: 100px 5%;
     }
@@ -585,7 +526,6 @@
       margin: 14px auto 60px;
     }
 
-    /* SERVICES */
     #services {
       background: var(--dark2);
       position: relative;
@@ -694,7 +634,6 @@
       padding: 2px 9px;
     }
 
-    /* BRANDS */
     #brands {
       background: var(--dark);
     }
@@ -770,7 +709,6 @@
       line-height: 1.55;
     }
 
-    /* TYRE SHOWCASE */
     #showcase {
       background: var(--dark2);
     }
@@ -875,7 +813,6 @@
       color: var(--blue4);
     }
 
-    /* WHY US */
     #why {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -884,13 +821,24 @@
     .why-left {
       position: relative;
       min-height: 600px;
-      /* background: url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=900&q=80') center/cover no-repeat; */
+      overflow: hidden;
+    }
+
+    /* ✅ FIX: was missing - image fills the left panel */
+    .why-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .why-left-ov {
       position: absolute;
       inset: 0;
       background: linear-gradient(to right, rgba(5, 13, 26, .45), rgba(5, 13, 26, .1));
+      z-index: 1;
     }
 
     .why-badge {
@@ -900,6 +848,7 @@
       background: var(--yellow);
       color: var(--dark);
       padding: 16px 22px;
+      z-index: 2;
     }
 
     .why-badge .big {
@@ -977,7 +926,6 @@
       line-height: 1.55;
     }
 
-    /* PROCESS */
     #process {
       background: var(--dark);
     }
@@ -1049,7 +997,6 @@
       line-height: 1.55;
     }
 
-    /* GALLERY */
     #gallery {
       overflow: hidden;
     }
@@ -1073,7 +1020,6 @@
       filter: brightness(1) saturate(1);
     }
 
-    /* CONTACT */
     #contact {
       background: var(--dark2);
     }
@@ -1226,7 +1172,6 @@
       transform: translateY(-2px);
     }
 
-    /* FOOTER */
     footer {
       background: var(--dark);
       border-top: 1px solid rgba(33, 150, 243, .15);
@@ -1313,7 +1258,7 @@
     }
 
     /* ═══════════════════════════════
-       CHATBOT
+       CHATBOT — FULLY RESPONSIVE ✅
     ═══════════════════════════════ */
     #chatToggle {
       position: fixed;
@@ -1522,6 +1467,7 @@
       flex-direction: column;
       gap: 12px;
       scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
 
     .ch-msgs::-webkit-scrollbar {
@@ -1711,7 +1657,7 @@
       cursor: not-allowed;
     }
 
-    /* RESPONSIVE */
+    /* ═══ RESPONSIVE BREAKPOINTS ═══ */
     @media(max-width:1024px) {
       #why {
         grid-template-columns: 1fr;
@@ -1774,6 +1720,7 @@
 
       .contact-wrap {
         grid-template-columns: 1fr;
+        gap: 40px;
       }
 
       .footer-body {
@@ -1817,15 +1764,40 @@
         display: none;
       }
 
-      #chatWindow {
-        width: calc(100vw - 24px);
-        right: 12px;
-        bottom: 90px;
+      .sec {
+        padding: 70px 5%;
       }
 
+      /* ✅ CHATBOT MOBILE FIX — was off-screen before */
       #chatToggle {
         right: 16px;
         bottom: 16px;
+        /* ✅ Push above iOS home bar */
+        bottom: max(16px, env(safe-area-inset-bottom, 16px));
+        width: 56px;
+        height: 56px;
+      }
+
+      #chatWindow {
+        /* ✅ Full-width with small margin */
+        width: calc(100vw - 20px);
+        right: 10px;
+        left: 10px;
+        /* ✅ Position above the toggle button */
+        bottom: calc(max(16px, env(safe-area-inset-bottom, 16px)) + 70px);
+        /* ✅ Limit height so it doesn't overflow the screen */
+        max-height: calc(100svh - 120px);
+        border-radius: 14px;
+      }
+
+      .ch-chips {
+        gap: 6px;
+        padding: 8px 10px;
+      }
+
+      .cchip {
+        font-size: .68rem;
+        padding: 5px 9px;
       }
     }
 
@@ -1834,18 +1806,101 @@
         font-size: 3.2rem;
       }
 
+      .hero-desc {
+        font-size: .95rem;
+      }
+
       .hero-btns {
         flex-direction: column;
         align-items: flex-start;
       }
 
+      .logo-text {
+        font-size: 1.35rem;
+      }
+
+      .logo-wheel {
+        width: 32px;
+        height: 32px;
+      }
+
+      nav {
+        padding: 0 4%;
+        height: 64px;
+      }
+
+      .mob-menu {
+        top: 64px;
+      }
+
+      .sec {
+        padding: 60px 4%;
+      }
+
+      .why-right {
+        padding: 40px 20px;
+      }
+
+      .fsubmit {
+        width: 100%;
+        text-align: center;
+        clip-path: none;
+        border-radius: 4px;
+      }
+
       .gallery-strip {
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       .gallery-strip img {
         flex: 0 0 75vw;
         height: 180px;
+      }
+
+      /* ✅ CHATBOT EXTRA SMALL SCREENS */
+      #chatToggle {
+        right: 14px;
+        bottom: max(14px, env(safe-area-inset-bottom, 14px));
+        width: 52px;
+        height: 52px;
+      }
+
+      #chatWindow {
+        width: calc(100vw - 16px);
+        right: 8px;
+        left: 8px;
+        bottom: calc(max(14px, env(safe-area-inset-bottom, 14px)) + 66px);
+        max-height: calc(100svh - 100px);
+        border-radius: 12px;
+      }
+
+      .ch-head {
+        padding: 12px 14px;
+      }
+
+      .ch-head-name {
+        font-size: .9rem;
+      }
+
+      .msg-bbl {
+        font-size: .83rem;
+      }
+
+      #chatInput {
+        font-size: .85rem;
+        padding: 9px 12px;
+      }
+    }
+
+    /* ✅ iOS notch / home bar safe area */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      #chatToggle {
+        bottom: calc(env(safe-area-inset-bottom) + 16px);
+      }
+
+      #chatWindow {
+        bottom: calc(env(safe-area-inset-bottom) + 82px);
       }
     }
   </style>
@@ -1854,7 +1909,6 @@
 <body>
   <div class="scroll-bar" id="scrollBar"></div>
 
-  <!-- NAV -->
   <nav id="mainNav">
     <a class="logo" href="#">
       <svg class="logo-wheel" viewBox="0 0 100 100" fill="none">
@@ -1887,133 +1941,86 @@
     <a href="#contact" onclick="closeMob()">Book Now</a>
   </div>
 
-  <!-- ═══════════════════════════════
-     HERO CAROUSEL (3 slides)
-═══════════════════════════════ -->
-
   <section id="hero">
-
-    <!-- Slide track -->
     <div class="carousel-track" id="carTrack">
-
-      <!-- SLIDE 1 -->
       <div class="carousel-slide active" id="slide0">
         <img src="images/main_two.png" alt="Tyre close-up" />
         <div class="slide-caption">
           <div class="hero-content">
-            <!-- <div class="hero-pill"><span class="dot"></span>Precision Wheel Specialists</div> -->
             <h1 class="hero-h1">Hi-Tech<br><span class="y">Tyres</span><span class="sub">Your Road. Our
                 Expertise.</span></h1>
-            <p class="hero-desc"> Professional 3D wheel alignment, balancing, puncture repair and premium tyre fitting
-              at VDL Plaza, Paravattani, Thrissur.</p>
+            <p class="hero-desc">Professional 3D wheel alignment, balancing, puncture repair and premium tyre fitting at
+              VDL Plaza, Paravattani, Thrissur.</p>
             <div class="hero-btns">
-              <a href="#contact" class="btn-yellow">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
+              <a href="#contact" class="btn-yellow"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 20h9" />
                   <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-                </svg>
-                Book a Service
-              </a>
-              <a href="#services" class="btn-outline">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
+                </svg>Book a Service</a>
+              <a href="#services" class="btn-outline"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
-                </svg>
-                View Services
-              </a>
+                </svg>View Services</a>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- SLIDE 2 -->
       <div class="carousel-slide" id="slide1">
         <img src="images/cr_three.png" alt="Car on road" />
         <div class="slide-caption">
           <div class="hero-content">
-         
-            <h1 class="hero-h1">Apollo<br><span class="y">Goodyear</span><span class="sub">Bridgestone — All In
+            <h1 class="hero-h1">Apollo<br><span class="y">Goodyear</span><span class="sub">Continental — All In
                 Stock</span></h1>
             <p class="hero-desc">We stock genuine tyres from the world's most trusted brands. Expert advice, best price
               match, and professional fitting guaranteed.</p>
             <div class="hero-btns">
-              <a href="#brands" class="btn-yellow">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                  <line x1="7" y1="7" x2="7.01" y2="7" />
-                </svg>
-                Explore Brands
-              </a>
+              <a href="#brands" class="btn-yellow">Explore Brands</a>
               <a href="#contact" class="btn-outline">Get a Quote</a>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- SLIDE 3 -->
       <div class="carousel-slide" id="slide2">
         <img src="images/Orange Geometric Modern Minimalist Sport Car Twitter Post.png" alt="Workshop" />
         <div class="slide-caption">
           <div class="hero-content">
-           
             <h1 class="hero-h1">Expert<br><span class="y">Workshop</span><span class="sub">Certified Technicians —
                 Kerala</span></h1>
             <p class="hero-desc">State-of-the-art computerised alignment and digital balancing equipment. Most jobs
-              completed within 1 hour. Transparent pricing always.</p>
+              completed within 1 hour.</p>
             <div class="hero-btns">
-              <a href="#why" class="btn-yellow">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Why Choose Us
-              </a>
+              <a href="#why" class="btn-yellow">Why Choose Us</a>
               <a href="#contact" class="btn-outline">Book Now</a>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-    </div><!-- /carousel-track -->
+    <!--     
+    <div class="hero-overlay" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></div>
+    <div class="hero-overlay2" style="position:absolute;inset:0;z-index:3;pointer-events:none;"></div>
+    <div class="tread" style="position:absolute;bottom:0;left:0;right:0;height:5px;z-index:4;"></div> -->
 
-    <!-- Overlays -->
-    <div class="hero-overlay"></div>
-    <div class="hero-overlay2"></div>
-    <div class="tread"></div>
 
-    <!-- Arrows -->
-    <button class="car-arrow prev" id="carPrev" aria-label="Previous slide">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round">
+    <button class="car-arrow prev" id="carPrev" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="15 18 9 12 15 6" />
-      </svg>
-    </button>
-    <button class="car-arrow next" id="carNext" aria-label="Next slide">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-        stroke-linecap="round" stroke-linejoin="round">
+      </svg></button>
+    <button class="car-arrow next" id="carNext" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="9 18 15 12 9 6" />
-      </svg>
-    </button>
-
-    <!-- Dots -->
+      </svg></button>
     <div class="car-dots">
       <div class="car-dot active" onclick="goSlide(0)"></div>
       <div class="car-dot" onclick="goSlide(1)"></div>
       <div class="car-dot" onclick="goSlide(2)"></div>
     </div>
-
-    <!-- Counter -->
     <div class="car-counter"><span id="carCurr">1</span> / 3</div>
-
-    <!-- Progress bar -->
     <div class="car-progress" id="carProgress"></div>
-
   </section>
 
-  <!-- STATS -->
   <div class="stats">
     <div class="stat">
       <div class="stat-n">5000+</div>
@@ -2033,7 +2040,6 @@
     </div>
   </div>
 
-  <!-- SERVICES -->
   <section id="services" class="sec">
     <span class="sec-tag">What We Do</span>
     <h2 class="sec-title">Our <em>Services</em></h2>
@@ -2041,9 +2047,8 @@
     <div class="srv-grid">
       <div class="srv-card">
         <div class="srv-num">01</div>
-        <div class="srv-img-wrap"><img class="srv-img"
-            src="images/Alig.jpeg" alt="Wheel Alignment"
-            loading="lazy" /></div>
+        <div class="srv-img-wrap"><img class="srv-img" src="images/Alig.jpeg" alt="Wheel Alignment" loading="lazy" />
+        </div>
         <div class="srv-body">
           <div class="srv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2059,9 +2064,8 @@
       </div>
       <div class="srv-card">
         <div class="srv-num">02</div>
-        <div class="srv-img-wrap"><img class="srv-img"
-            src="images/bl_one.jpg" alt="Wheel Balancing"
-            loading="lazy" /></div>
+        <div class="srv-img-wrap"><img class="srv-img" src="images/bl_one.jpg" alt="Wheel Balancing" loading="lazy" />
+        </div>
         <div class="srv-body">
           <div class="srv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2075,9 +2079,7 @@
       </div>
       <div class="srv-card">
         <div class="srv-num">03</div>
-        <div class="srv-img-wrap"><img class="srv-img"
-            src="images/ph.jpg" alt="Puncture Repair"
-            loading="lazy" /></div>
+        <div class="srv-img-wrap"><img class="srv-img" src="images/ph.jpg" alt="Puncture Repair" loading="lazy" /></div>
         <div class="srv-body">
           <div class="srv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2092,8 +2094,7 @@
       </div>
       <div class="srv-card">
         <div class="srv-num">04</div>
-        <div class="srv-img-wrap"><img class="srv-img"
-            src="images/Untitled design (7).png" alt="Tyre Change"
+        <div class="srv-img-wrap"><img class="srv-img" src="images/Untitled design (7).png" alt="Tyre Change"
             loading="lazy" /></div>
         <div class="srv-body">
           <div class="srv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
@@ -2103,14 +2104,12 @@
             </svg></div>
           <div class="srv-name">Tyre Change</div>
           <p class="srv-desc">Quick and safe tyre removal and fitting for all vehicles. Seasonal swaps and worn-out
-            replacements done right the first time.</p>
+            replacements done right.</p>
         </div>
       </div>
       <div class="srv-card">
         <div class="srv-num">05</div>
-        <div class="srv-img-wrap"><img class="srv-img"
-            src="images/newtyers.jpg" alt="New Tyres"
-            loading="lazy" /></div>
+        <div class="srv-img-wrap"><img class="srv-img" src="images/newtyers.jpg" alt="New Tyres" loading="lazy" /></div>
         <div class="srv-body">
           <div class="srv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2118,15 +2117,13 @@
               <line x1="7" y1="7" x2="7.01" y2="7" />
             </svg></div>
           <div class="srv-name">New Tyres</div>
-          <p class="srv-desc">Wide selection of Apollo, Goodyear and Bridgestone tyres. Expert advice to match the
+          <p class="srv-desc">Wide selection of Apollo, Goodyear and Continental tyres. Expert advice to match the
             perfect tyre to your vehicle and budget.</p>
         </div>
       </div>
       <div class="srv-card">
         <div class="srv-num">06</div>
-        <div class="srv-img-wrap"><img class="srv-img"
-            src="images/inf.jpg" alt="Inspection"
-            loading="lazy" /></div>
+        <div class="srv-img-wrap"><img class="srv-img" src="images/inf.jpg" alt="Inspection" loading="lazy" /></div>
         <div class="srv-body">
           <div class="srv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2135,13 +2132,12 @@
             </svg></div>
           <div class="srv-name">Tyre Inspection</div>
           <p class="srv-desc">Free visual and pressure check across all four tyres. We flag wear patterns, sidewall
-            damage and pressure issues to keep you safe.</p>
+            damage and pressure issues.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BRANDS -->
   <section id="brands" class="sec">
     <span class="sec-tag">Our Stock</span>
     <h2 class="sec-title">Premium <em>Tyre Brands</em></h2>
@@ -2155,12 +2151,10 @@
             </svg></div>
           <div class="brand-nm">Apollo</div>
           <div class="brand-tag">Go the Distance</div>
-          <p class="brand-d">India's premier tyre brand trusted for performance and durability across all terrains —
-            from city drives to highways.</p>
+          <p class="brand-d">India's premier tyre brand trusted for performance and durability across all terrains.</p>
         </div>
       </div>
-      <div class="brand-card">
-        <img class="brand-img" src="images/goodyear-reviews.png" alt="Goodyear" loading="lazy" />
+      <div class="brand-card"><img class="brand-img" src="images/GY_TT.png" alt="Goodyear" loading="lazy" />
         <div class="brand-overlay">
           <div class="brand-logo-badge"><svg width="28" height="28" viewBox="0 0 40 40" fill="none">
               <circle cx="20" cy="20" r="16" stroke="#FFD100" stroke-width="2.5" />
@@ -2168,11 +2162,11 @@
             </svg></div>
           <div class="brand-nm">Goodyear</div>
           <div class="brand-tag">More Driven</div>
-          <p class="brand-d">160+ years of innovation. Goodyear delivers outstanding grip, safety and fuel efficiency
-            for every type of vehicle.</p>
+          <p class="brand-d">160+ years of innovation. Goodyear delivers outstanding grip, safety and fuel efficiency.
+          </p>
         </div>
       </div>
-      <div class="brand-card"><img class="brand-img" src="images/bridgestone-tyres-logo-png.png" alt="Bridgestone"
+      <div class="brand-card"><img class="brand-img" src="images/continental_tyres.png" alt="continental"
           loading="lazy" />
         <div class="brand-overlay">
           <div class="brand-logo-badge"><svg width="28" height="28" viewBox="0 0 40 40" fill="none">
@@ -2180,36 +2174,29 @@
               <circle cx="20" cy="20" r="7" fill="#FFD100" opacity=".75" />
               <circle cx="20" cy="20" r="3" fill="#FFD100" />
             </svg></div>
-          <div class="brand-nm">Bridgestone</div>
-          <div class="brand-tag">Your Journey. Our Passion.</div>
-          <p class="brand-d">World's largest tyre company. Bridgestone is synonymous with superior quality, safety and
-            cutting-edge technology.</p>
+          <div class="brand-nm">Continental</div>
+          <div class="brand-tag">The Future in Motion</div>
+          <p class="brand-d">A global leader in tyre innovation, delivering outstanding safety, performance, and
+            cutting-edge German engineering.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TYRE SHOWCASE -->
   <section id="showcase" class="sec" style="background:var(--dark2);">
     <div class="showcase-inner">
       <div class="showcase-imgs">
-        <div class="sh-wrap sh-wide"><img src="images/qulaty_tt.jpg"
-            alt="Performance Tyres" loading="lazy" />
+        <div class="sh-wrap sh-wide"><img src="images/qulaty_tt.jpg" alt="Performance Tyres" loading="lazy" />
           <div class="sh-lbl">Performance Tyres</div>
         </div>
-        <div class="sh-wrap sh-tall"><img src="images/download.jpg"
-            alt="All Terrain" loading="lazy" />
+        <div class="sh-wrap sh-tall"><img src="images/download.jpg" alt="All Terrain" loading="lazy" />
           <div class="sh-lbl">All Terrain</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:5px;">
-          <div class="sh-wrap sh-short"><img
-              src="images/exp_fir.jpg" alt="Expert Fitting"
-              loading="lazy" />
+          <div class="sh-wrap sh-short"><img src="images/exp_fir.jpg" alt="Expert Fitting" loading="lazy" />
             <div class="sh-lbl">Expert Fitting</div>
           </div>
-          <div class="sh-wrap sh-short"><img
-              src="images/bl_two.jpg" alt="Precision Balancing"
-              loading="lazy" />
+          <div class="sh-wrap sh-short"><img src="images/bl_two.jpg" alt="Precision Balancing" loading="lazy" />
             <div class="sh-lbl">Precision Balancing</div>
           </div>
         </div>
@@ -2245,10 +2232,9 @@
     </div>
   </section>
 
-
-  <!-- WHY US -->
-  <!-- <section id="why">
+  <section id="why">
     <div class="why-left">
+      <img src="images/new_tyres.jpg" alt="Why Choose Us" class="why-bg-img">
       <div class="why-left-ov"></div>
       <div class="why-badge">
         <div class="big">12+</div>
@@ -2308,117 +2294,13 @@
             </svg></div>
           <div>
             <div class="why-it">100% Genuine Brand Tyres</div>
-            <p class="why-id">Only authentic Apollo, Goodyear and Bridgestone tyres — never cheap imitations.</p>
+            <p class="why-id">Only authentic Apollo, Goodyear and Continental tyres — never cheap imitations.</p>
           </div>
         </li>
       </ul>
     </div>
-  </section> -->
+  </section>
 
-  <!-- WHY US -->
-<section id="why">
-  <div class="why-left">
-    
-    <!-- Background Image -->
-    <img src="images/new_tyres.jpg" 
-         alt="Why Choose Us" class="why-bg-img">
-
-    <!-- Overlay -->
-    <div class="why-left-ov"></div>
-
-    <!-- Badge -->
-    <div class="why-badge">
-      <div class="big">12+</div>
-      <div class="sm">Years of Expert Service</div>
-    </div>
-
-  </div>
-
-  <div class="why-right">
-    <span class="sec-tag" style="text-align:left;">Why Choose Us</span>
-    <h2 class="sec-title" style="text-align:left;">Built on <em>Trust</em></h2>
-    <div class="divider" style="margin-left:0;"></div>
-
-    <ul class="why-list">
-      <li class="why-item">
-        <div class="why-check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD100"
-            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <div>
-          <div class="why-it">State-of-the-Art Equipment</div>
-          <p class="why-id">
-            Computerised alignment and digital balancing machines for pinpoint precision every time.
-          </p>
-        </div>
-      </li>
-
-      <li class="why-item">
-        <div class="why-check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD100"
-            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <div>
-          <div class="why-it">Certified Technicians</div>
-          <p class="why-id">
-            Our team is trained and experienced in handling all makes and models with expert care.
-          </p>
-        </div>
-      </li>
-
-      <li class="why-item">
-        <div class="why-check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD100"
-            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <div>
-          <div class="why-it">Quick Turnaround</div>
-          <p class="why-id">
-            Most services completed within the hour. Get back on the road fast without long waits.
-          </p>
-        </div>
-      </li>
-
-      <li class="why-item">
-        <div class="why-check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD100"
-            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <div>
-          <div class="why-it">Transparent Pricing</div>
-          <p class="why-id">
-            Clear quote before any work begins — no hidden charges, ever. Guaranteed.
-          </p>
-        </div>
-      </li>
-
-      <li class="why-item">
-        <div class="why-check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD100"
-            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-        <div>
-          <div class="why-it">100% Genuine Brand Tyres</div>
-          <p class="why-id">
-            Only authentic Apollo, Goodyear and Bridgestone tyres — never cheap imitations.
-          </p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-  <!-- PROCESS -->
   <section id="process">
     <div class="process-hero-bg"><span class="sec-tag">Simple Process</span>
       <h2 class="sec-title">How It <em>Works</em></h2>
@@ -2450,7 +2332,6 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
   <section id="gallery">
     <div class="gallery-strip">
       <img src="images/shop.jpg" alt="Shop" loading="lazy" />
@@ -2461,15 +2342,13 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="sec">
     <span class="sec-tag">Get In Touch</span>
     <h2 class="sec-title">Book a <em>Service</em></h2>
     <div class="divider"></div>
     <div class="contact-wrap">
       <div>
-        <img class="c-main-img" src="images/full_services.jpg"
-          alt="Tyre shop" loading="lazy" />
+        <img class="c-main-img" src="images/full_services.jpg" alt="Tyre shop" loading="lazy" />
         <div class="c-cards">
           <div class="ccard">
             <div class="ccard-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
@@ -2479,14 +2358,14 @@
               </svg></div>
             <div>
               <div class="ccard-lbl">Location</div>
-              <div class="ccard-val">Hi-Tech Tyres,<br> VDL Plaza, Paravattani, Thrissur</div>
+              <div class="ccard-val">Hi-Tech Tyres,<br>VDL Plaza, Paravattani, Thrissur</div>
             </div>
           </div>
           <div class="ccard">
             <div class="ccard-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2196F3"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42a2 2 0 0 1 1.99-1.8h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.87-1.87a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42a2 2 0 0 1 1.99-1.8h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.87-1.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg></div>
             <div>
               <div class="ccard-lbl">Phone</div>
@@ -2535,7 +2414,7 @@
               <option>Tyre Change</option>
               <option>New Tyre – Apollo</option>
               <option>New Tyre – Goodyear</option>
-              <option>New Tyre – Bridgestone</option>
+              <option>New Tyre – Continental </option>
               <option>Tyre Inspection</option>
               <option>Multiple Services</option>
             </select></div>
@@ -2547,7 +2426,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <img class="footer-top-img" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=1600&q=65"
       alt="Road" loading="lazy" />
@@ -2583,7 +2461,7 @@
         <ul class="footer-links">
           <li><a href="#brands">Apollo Tyres</a></li>
           <li><a href="#brands">Goodyear</a></li>
-          <li><a href="#brands">Bridgestone</a></li>
+          <li><a href="#brands">Continental </a></li>
         </ul>
         <div class="footer-h" style="margin-top:26px;">Quick Links</div>
         <ul class="footer-links">
@@ -2599,9 +2477,7 @@
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════
-     CHATBOT (Smart Rule-Based — Works Offline, No API Key Needed)
-═══════════════════════════════ -->
+  <!-- CHATBOT -->
   <button id="chatToggle" aria-label="Open chat">
     <div class="cbadge">💬</div>
     <svg class="ico-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
@@ -2633,13 +2509,13 @@
       <button class="ch-clear" id="clearChat">Clear</button>
     </div>
     <div class="ch-chips">
-      <div class="cchip" onclick="quickAsk('opening hours')">🕐 Hours</div>
-      <div class="cchip" onclick="quickAsk('alignment price')">💰 Alignment</div>
-      <div class="cchip" onclick="quickAsk('balancing price')">⚖️ Balancing</div>
-      <div class="cchip" onclick="quickAsk('puncture repair')">🔧 Puncture</div>
-      <div class="cchip" onclick="quickAsk('tyre brands')">🏷️ Brands</div>
-      <div class="cchip" onclick="quickAsk('location')">📍 Location</div>
-      <div class="cchip" onclick="quickAsk('book appointment')">📅 Booking</div>
+      <div class="cchip" onclick="quickAsk('Opening hours')">🕐 Hours</div>
+      <div class="cchip" onclick="quickAsk('Alignment price')">💰 Alignment</div>
+      <div class="cchip" onclick="quickAsk('Balancing price')">⚖️ Balancing</div>
+      <div class="cchip" onclick="quickAsk('Puncture Repair')">🔧 Puncture</div>
+      <div class="cchip" onclick="quickAsk('Tyre brands')">🏷️ Brands</div>
+      <div class="cchip" onclick="quickAsk('Location')">📍 Location</div>
+      <div class="cchip" onclick="quickAsk('Book Appointment')">📅 Booking</div>
     </div>
     <div class="ch-msgs" id="chMsgs"></div>
     <div class="ch-inp-wrap">
@@ -2653,63 +2529,26 @@
   </div>
 
   <script>
-    /* ═══════════ CAROUSEL ═══════════ */
     (function () {
-      const TOTAL = 3;
-      const DURATION = 6000; // ms per slide
-      let current = 0, timer, progressTimer, progressStart;
-
+      const TOTAL = 3, DURATION = 6000; let current = 0, timer, progressTimer;
       const track = document.getElementById('carTrack');
       const dots = document.querySelectorAll('.car-dot');
       const counter = document.getElementById('carCurr');
       const bar = document.getElementById('carProgress');
-
-      function goSlide(n) {
-        document.getElementById('slide' + current).classList.remove('active');
-        dots[current].classList.remove('active');
-        current = (n + TOTAL) % TOTAL;
-        document.getElementById('slide' + current).classList.add('active');
-        dots[current].classList.add('active');
-        counter.textContent = current + 1;
-        track.style.transform = 'translateX(-' + (current * 33.333) + '%)';
-        resetProgress();
-      }
+      function goSlide(n) { document.getElementById('slide' + current).classList.remove('active'); dots[current].classList.remove('active'); current = (n + TOTAL) % TOTAL; document.getElementById('slide' + current).classList.add('active'); dots[current].classList.add('active'); counter.textContent = current + 1; track.style.transform = 'translateX(-' + (current * 33.333) + '%)'; resetProgress(); }
       window.goSlide = goSlide;
-
-      function next() { goSlide(current + 1); }
-      function prev() { goSlide(current - 1); }
-
+      function next() { goSlide(current + 1); } function prev() { goSlide(current - 1); }
       document.getElementById('carNext').addEventListener('click', () => { next(); resetAuto(); });
       document.getElementById('carPrev').addEventListener('click', () => { prev(); resetAuto(); });
-
       function startAuto() { timer = setInterval(next, DURATION); }
       function resetAuto() { clearInterval(timer); startAuto(); }
-
-      function resetProgress() {
-        clearInterval(progressTimer);
-        bar.style.transition = 'none'; bar.style.width = '0%';
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            bar.style.transition = 'width ' + DURATION + 'ms linear';
-            bar.style.width = '100%';
-          });
-        });
-        progressTimer = setTimeout(() => { bar.style.transition = 'none'; bar.style.width = '0%'; }, DURATION);
-      }
-
-      // Swipe on mobile
+      function resetProgress() { clearInterval(progressTimer); bar.style.transition = 'none'; bar.style.width = '0%'; requestAnimationFrame(() => { requestAnimationFrame(() => { bar.style.transition = 'width ' + DURATION + 'ms linear'; bar.style.width = '100%'; }); }); progressTimer = setTimeout(() => { bar.style.transition = 'none'; bar.style.width = '0%'; }, DURATION); }
       let touchX = 0;
       document.getElementById('hero').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-      document.getElementById('hero').addEventListener('touchend', e => {
-        const diff = touchX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); resetAuto(); }
-      }, { passive: true });
-
-      startAuto();
-      resetProgress();
+      document.getElementById('hero').addEventListener('touchend', e => { const diff = touchX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); resetAuto(); } }, { passive: true });
+      startAuto(); resetProgress();
     })();
 
-    /* ═══════════ GENERAL ═══════════ */
     window.addEventListener('scroll', () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
       document.getElementById('scrollBar').style.width = pct + '%';
@@ -2718,239 +2557,42 @@
     document.getElementById('hbg').addEventListener('click', () => document.getElementById('mobMenu').classList.toggle('open'));
     function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
 
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; io.unobserve(e.target); } });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.srv-card,.brand-card,.step,.ccard,.why-item,.stat,.chip').forEach(el => {
-      el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .55s ease,transform .55s ease';
-      io.observe(el);
-    });
+    const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; io.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.srv-card,.brand-card,.step,.ccard,.why-item,.stat,.chip').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(22px)'; el.style.transition = 'opacity .55s ease,transform .55s ease'; io.observe(el); });
 
-    function doSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.fsubmit');
-      btn.textContent = '✓ Enquiry Sent!'; btn.style.background = '#22c55e'; btn.style.color = '#fff';
-      setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; btn.style.color = ''; e.target.reset(); }, 3200);
-    }
+    function doSubmit(e) { e.preventDefault(); const btn = e.target.querySelector('.fsubmit'); btn.textContent = '✓ Enquiry Sent!'; btn.style.background = '#22c55e'; btn.style.color = '#fff'; setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; btn.style.color = ''; e.target.reset(); }, 3200); }
 
-    /* ═══════════ SMART CHATBOT (rule-based, no API key needed) ═══════════ */
     (function () {
       const KB = {
-        hours: [
-          /hour|open|time|when|schedule|close|closing|morning|evening|sunday|saturday|weekend|weekday/i,
-          `🕐 <strong>Opening Hours</strong><br><br>
-       <ul>
-         <li><strong>Monday – Saturday:</strong> 9:00 AM – 7:00 PM</li>
-         <li><strong>Sunday:</strong> Closed</li>
-       </ul>
-       We're open 6 days a week! 😊`
-        ],
-        alignment: [
-          /align(ment)?|steering|tracking|pulling|drift|camber|toe|caster/i,
-          `⚙️ <strong>Wheel Alignment Prices</strong><br><br>
-      <ul>
-        <li><strong>Wheel Alignment:</strong> Price varies based on vehicle type.</li>
-    
-      </ul>
-       We use computerised equipment for pinpoint accuracy. Most jobs done in under 45 minutes!<br><br>
-       👉 <a href="#contact">Book Now</a> or call <strong>+91 9400756622</strong>`
-        ],
-        balancing: [
-          /balanc(ing|e)|vibrat|wobble|shimmy/i,
-          `⚖️ <strong>Wheel Balancing Prices</strong><br><br>
-       <ul>
-         <li><strong>Per wheel:</strong> ₹80 – ₹150</li>
-         <li><strong>All 4 wheels:</strong> ₹300 – ₹500</li>
-       </ul>
-       Precision digital balancing eliminates vibration and extends tyre life.<br><br>
-       👉 <a href="#contact">Book Now</a>`
-        ],
-        puncture: [
-          /puncture|flat|tyre.*repair|repair.*tyre|nail|hole|leak|burst|tubeless|tube/i,
-          `🔧 <strong>Puncture Repair Prices</strong><br><br>
-       <ul>
-         <li><strong>Tubeless tyre:</strong> ₹80 – ₹150</li>
-         <li><strong>Tube-type tyre:</strong> ₹60 – ₹100</li>
-       </ul>
-       Quick fix — back on the road in minutes! We handle both tube and tubeless types.<br><br>
-       No appointment needed for puncture repairs. Walk in anytime!`
-        ],
-        newTyre: [
-          /new tyre|buy tyre|tyre price|tyre cost|how much.*tyre|tyre.*how much|replace.*tyre|tyre.*replac/i,
-          `🏷️ <strong>New Tyre Prices</strong><br><br>
-       New tyres start from <strong>₹1,500</strong> and vary by brand, size and vehicle type.<br><br>
-       <strong>Brands in stock:</strong>
-       <ul>
-         <li>🔵 <strong>Apollo</strong> — Great value, trusted Indian brand</li>
-         <li>🟡 <strong>Goodyear</strong> — Premium international quality</li>
-         <li>⚪ <strong>Bridgestone</strong> — World's #1 tyre brand</li>
-       </ul>
-       For exact pricing, call us at <strong>+91 98765 43210</strong> with your vehicle model and tyre size.`
-        ],
-        brands: [
-          /brand|apollo|goodyear|bridgestone|which.*tyre|tyre.*which|stock|available/i,
-          `🏷️ <strong>Tyre Brands We Stock</strong><br><br>
-       <ul>
-         <li><strong>Apollo Tyres</strong> — India's premier brand, great value for money</li>
-         <li><strong>Goodyear</strong> — 160+ years of innovation, premium quality</li>
-         <li><strong>Bridgestone</strong> — World's largest tyre company, top-tier safety</li>
-       </ul>
-       All tyres are <strong>100% genuine</strong> — no imitations. Expert fitting advice included!`
-        ],
-        location: [
-          /location|address|where|directions|find|map|how to reach|come|visit|shop/i,
-          `📍<strong>Hi-Tech Tyres</strong><br>
-VDL Plaza, Paravattani,<br>
-Near Thrissur Corporation Ground,<br>
-Thrissur, Kerala<br><br>
-       📞 <strong>+91 9400756622</strong><br>
-       ✉️ pradeeshpb21.pp@gmail.com<br><br>
-       <a href="https://maps.app.goo.gl/tMqkVMzJA3NR3zcQ6?g_st=ac" target="_blank">
-  View on Map →
-</a>`
-
-
-        ],
-        booking: [
-          /book|appointment|schedul|slot|visit|reserv|when can|how to book/i,
-          `📅 <strong>Book a Service</strong><br><br>
-       Two easy ways to book:<br><br>
-       <strong>1. Online:</strong> Fill the <a href="#contact">booking form</a> on this page — we confirm within the hour!<br><br>
-       <strong>2. Call us:</strong> <strong>+91 9400756622</strong><br>
-       (Mon–Sat 9am–7pm)<br><br>
-       Most services are completed within <strong>1 hour</strong>. No long waits! ⚡`
-        ],
-        price: [
-          /price|cost|charge|fee|rate|how much|₹|rupee/i,
-          `💰 <strong>All Service Prices</strong><br><br>
-       <ul>
-         <li><strong>Wheel Alignment (2-wheel):</strong> ₹299–₹399</li>
-         <li><strong>Wheel Alignment (4-wheel):</strong> ₹499–₹799</li>
-         <li><strong>Wheel Balancing (per wheel):</strong> ₹80–₹150</li>
-         <li><strong>Wheel Balancing (4 wheels):</strong> ₹300–₹500</li>
-         <li><strong>Puncture Repair (tubeless):</strong> ₹80–₹150</li>
-         <li><strong>Puncture Repair (tube):</strong> ₹60–₹100</li>
-         <li><strong>Tyre Fitting (per tyre):</strong> ₹100–₹200</li>
-         <li><strong>New Tyres:</strong> from ₹1,500</li>
-         <li><strong>Tyre Inspection:</strong> FREE ✅</li>
-       </ul>
-       Call <strong>+91 98765 43210</strong> for exact quotes.`
-        ],
-        fitting: [
-          /fitting|fit|install|mount|chang(e|ing)|swap/i,
-          `🔩 <strong>Tyre Fitting / Change</strong><br><br>
-       <ul>
-         <li><strong>Per tyre:</strong> ₹100 – ₹200</li>
-       </ul>
-       Quick and safe removal and fitting for all vehicle types. Done professionally every time!<br><br>
-       👉 <a href="#contact">Book Now</a>`
-        ],
-        inspection: [
-          /inspect|check|free|pressure|tread|wear|condition/i,
-          `✅ <strong>Free Tyre Inspection</strong><br><br>
-       We offer a <strong>FREE</strong> visual and pressure check on all four tyres!<br><br>
-       We check for:<ul><li>Tread wear patterns</li><li>Sidewall damage</li><li>Air pressure</li><li>Alignment indicators</li></ul>
-       Walk in anytime during opening hours — no appointment needed!`
-        ],
-        hello: [
-          /^(hi|hello|hey|good\s*(morning|afternoon|evening)|namaste|hola|salut|howdy|greetings)/i,
-          `👋 <strong>Hello! Welcome to Hi-Tech Tyres!</strong><br><br>
-       Great to have you here. I can help you with:<br>
-       <ul>
-         <li>🕐 Opening hours</li>
-         <li>💰 Service prices</li>
-         <li>🔧 Puncture, alignment & balancing info</li>
-         <li>🏷️ Tyre brands (Apollo, Goodyear, Bridgestone)</li>
-         <li>📅 Booking appointments</li>
-         <li>📍 Shop location</li>
-       </ul>
-       What can I help you with today?`
-        ],
-        thanks: [
-          /thank|thanks|great|awesome|perfect|wonderful|helpful|good|nice/i,
-          `😊 You're welcome! We're always happy to help.<br><br>
-       If you have any more questions or want to book a service, feel free to ask or call us at <strong>+91 98765 43210</strong>.<br><br>
-       Drive safe! 🚗`
-        ],
-        contact: [
-          /contact|call|phone|number|email|reach|whatsapp/i,
-          `📞 <strong>Contact Us</strong><br><br>
-       <strong>Phone:</strong> +91 98765 43210<br>
-       <strong>Email:</strong> info@hitechtyre.com<br><br>
-       <strong>Hours:</strong><br>
-       Mon–Sat: 8:00 AM – 8:00 PM<br>
-       Sunday: 9:00 AM – 5:00 PM<br><br>
-       Or use our <a href="#contact">online booking form</a> — we confirm within the hour!`
-        ]
+        hours: [/hour|open|time|when|schedule|close|closing|morning|evening|sunday|saturday|weekend|weekday/i, `🕐 <strong>Opening Hours</strong><br><br><ul><li><strong>Monday – Saturday:</strong> 9:00 AM – 7:00 PM</li><li><strong>Sunday:</strong> Closed</li></ul>We're open 6 days a week! 😊`],
+        alignment: [/align(ment)?|steering|tracking|pulling|drift|camber|toe|caster/i, `⚙️ <strong>Wheel Alignment</strong><br><br>Price varies based on vehicle type.<br><br>We use computerised equipment for pinpoint accuracy. Most jobs done in under 45 minutes!<br><br>👉 <a href="#contact">Book Now</a> or call <strong>+91 9400756622</strong>`],
+        balancing: [/balanc(ing|e)|vibrat|wobble|shimmy/i, `⚖️ <strong>Wheel Balancing Prices</strong><br><br><ul><li><strong>Per wheel:</strong> ₹125 onwards (varies based on alloy type & rim size)</li><li><strong>All 4 wheels:</strong> ₹500 onwards (depending on alloy type & rim size)</li></ul>Precision digital balancing eliminates vibration!<br><br>👉 <a href="#contact">Book Now</a>`],
+        newTyre: [/new tyre|buy tyre|tyre price|tyre cost|how much.*tyre|tyre.*how much|replace.*tyre|tyre.*replac/i, `🏷️ <strong>New Tyre Prices</strong><br><br>Starting from <strong>₹1,500</strong>, varying by brand and size.<br><br><ul><li>🔵 <strong>Apollo</strong> — Great value</li><li>🟡 <strong>Goodyear</strong> — Premium quality</li><li>⚪ <strong>Continental </strong> — World's best</li></ul>Call <strong>+91 9400756622</strong> for exact pricing.`],
+        brands: [/brand|apollo|goodyear|Continental |which.*tyre|tyre.*which|stock|available/i, `🏷️ <strong>Tyre Brands We Stock</strong><br><br><ul><li><strong>Apollo Tyres</strong> — India's premier brand</li><li><strong>Goodyear</strong> — 160+ years of innovation</li><li><strong>Continental </strong> —A global leader in tyre innovation</li></ul>All 100% genuine!`],
+        location: [/location|address|where|directions|find|map|how to reach|come|visit|shop/i, `📍 <strong>Hi-Tech Tyres</strong><br>VDL Plaza, Paravattani,<br>Thrissur, Kerala<br><br>📞 <strong>+91 9400756622</strong><br>✉️ pradeeshpb21.pp@gmail.com<br><br><a href="https://maps.app.goo.gl/tMqkVMzJA3NR3zcQ6?g_st=ac" target="_blank">View on Map →</a>`],
+        booking: [/book|appointment|schedul|slot|visit|reserv|when can|how to book/i, `📅 <strong>Book a Service</strong><br><br><strong>1. Online:</strong> <a href="#contact">Booking form</a> — confirmed within the hour!<br><br><strong>2. Call:</strong> <strong>+91 9400756622</strong> (Mon–Sat 9am–7pm)<br><br>Most services done in <strong>1 hour</strong>! ⚡`],
+        price: [/price|cost|charge|fee|rate|how much|₹|rupee/i, `💰 <strong>All Service Prices</strong><br><br><ul><li>Alignment (2-wheel): ₹299–₹399</li><li>Alignment (4-wheel): ₹499–₹799</li><li>Balancing per wheel: ₹80–₹150</li><li>Puncture (tubeless): ₹80–₹150</li><li>Tyre Fitting: ₹100–₹200</li><li>New Tyres: from ₹1,500</li><li><strong>Inspection: FREE ✅</strong></li></ul>`],
+        hello: [/^(hi|hello|hey|good\s*(morning|afternoon|evening)|namaste|howdy|greetings)/i, `👋 <strong>Hello! Welcome to Hi-Tech Tyres!</strong><br><br>I can help with:<ul><li>🕐 Opening hours</li><li>💰 Service prices</li><li>🔧 Puncture, alignment & balancing</li><li>🏷️ Tyre brands</li><li>📅 Booking</li><li>📍 Location</li></ul>What can I help with today?`],
+        thanks: [/thank|thanks|great|awesome|perfect|wonderful|helpful|good|nice/i, `😊 You're welcome! Call us at <strong>+91 9400756622</strong> anytime. Drive safe! 🚗`],
+        puncture: [/puncture|flat|air leak|tyre repair|repair/i, `🔧 <strong>Puncture Repair</strong><br><br><ul><li><strong>Tubeless:</strong> ₹150 – ₹200</li></ul>Quick and reliable repair in minutes!<br><br>👉 <a href="#contact">Book Now</a>`],
+        contact: [/contact|call|phone|number|email|reach|whatsapp/i, `📞 <strong>Contact Hi-Tech Tyres</strong><br><br><strong>Phone:</strong> +91 9400756622<br><strong>Email:</strong> pradeeshpb21.pp@gmail.com<br><strong>Hours:</strong> Mon–Sat 9am–7pm<br><br><a href="#contact">Book online →</a>`]
       };
-
-      const FALLBACK = `I'm not sure about that, but I can help with:<br><br>
-    <ul>
-      <li>🕐 <strong>Opening hours</strong> — tap the chip above</li>
-      <li>💰 <strong>Prices</strong> for alignment, balancing, puncture, new tyres</li>
-      <li>🏷️ <strong>Tyre brands</strong> — Apollo, Goodyear, Bridgestone</li>
-      <li>📅 <strong>Booking</strong> an appointment</li>
-    </ul>
-    Or call us directly: <strong>+91 98765 43210</strong>`;
-
-      function getReply(text) {
-        const t = text.toLowerCase().trim();
-        for (const [key, [re, reply]] of Object.entries(KB)) {
-          if (re.test(t)) return reply;
-        }
-        return FALLBACK;
-      }
-
-      const win = document.getElementById('chatWindow');
-      const toggle = document.getElementById('chatToggle');
-      const msgs = document.getElementById('chMsgs');
-      const input = document.getElementById('chatInput');
-      const sendB = document.getElementById('chatSend');
-
-      function init() {
-        addBot(`👋 <strong>Welcome to Hi-Tech Tyres!</strong><br><br>
-      I'm your virtual assistant — ask me anything about our services, prices, hours or brands!<br><br>
-      👆 Use the quick buttons above or type your question below.`);
-      }
+      const FALLBACK = `I'm not sure, but I can help with:<br><ul><li>🕐 Opening hours</li><li>💰 Service prices</li><li>🏷️ Apollo, Goodyear, Continental </li><li>📅 Booking</li></ul>Or call: <strong>+91 9400756622</strong>`;
+      function getReply(text) { const t = text.toLowerCase().trim(); for (const [key, [re, reply]] of Object.entries(KB)) { if (re.test(t)) return reply; } return FALLBACK; }
+      const win = document.getElementById('chatWindow'), toggle = document.getElementById('chatToggle'), msgs = document.getElementById('chMsgs'), input = document.getElementById('chatInput'), sendB = document.getElementById('chatSend');
+      function init() { addBot(`👋 <strong>Welcome to Hi-Tech Tyres!</strong><br><br>I'm your virtual assistant. Ask me about services, prices, hours or brands!<br><br>👆 Tap the quick buttons or type below.`); }
       init();
-
-      toggle.addEventListener('click', () => {
-        const open = win.classList.toggle('open');
-        toggle.classList.toggle('open', open);
-        if (open) { input.focus(); scrollD(); }
-      });
+      toggle.addEventListener('click', () => { const open = win.classList.toggle('open'); toggle.classList.toggle('open', open); if (open) { setTimeout(() => input.focus(), 350); scrollD(); } });
       document.getElementById('clearChat').addEventListener('click', () => { msgs.innerHTML = ''; init(); });
       sendB.addEventListener('click', send);
       input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
       input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 100) + 'px'; });
-
-      function quickAsk(t) { input.value = t; send(); }
+      function quickAsk(t) { if (!win.classList.contains('open')) { win.classList.add('open'); toggle.classList.add('open'); } input.value = t; send(); }
       window.quickAsk = quickAsk;
-
-      function send() {
-        const text = input.value.trim();
-        if (!text) return;
-        input.value = ''; input.style.height = 'auto';
-        addUser(text);
-        const tid = addTyping();
-        setTimeout(() => { removeTyping(tid); addBot(getReply(text)); }, 600 + Math.random() * 400);
-      }
-
-      function addBot(html) {
-        const d = document.createElement('div'); d.className = 'msg';
-        d.innerHTML = `<div class="msg-av bot"><svg width="14" height="14" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" stroke="#FFD100" stroke-width="8"/><circle cx="50" cy="50" r="14" fill="#FFD100"/><line x1="50" y1="6" x2="50" y2="94" stroke="#FFD100" stroke-width="6"/><line x1="6" y1="50" x2="94" y2="50" stroke="#FFD100" stroke-width="6"/></svg></div><div class="msg-bbl">${html}</div>`;
-        msgs.appendChild(d); scrollD();
-      }
-      function addUser(text) {
-        const d = document.createElement('div'); d.className = 'msg user';
-        d.innerHTML = `<div class="msg-av usr">U</div><div class="msg-bbl">${text}</div>`;
-        msgs.appendChild(d); scrollD();
-      }
-      function addTyping() {
-        const id = 'tp-' + Date.now(), d = document.createElement('div'); d.className = 'msg'; d.id = id;
-        d.innerHTML = `<div class="msg-av bot"><svg width="14" height="14" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" stroke="#FFD100" stroke-width="8"/><circle cx="50" cy="50" r="14" fill="#FFD100"/></svg></div><div class="msg-bbl"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
-        msgs.appendChild(d); scrollD(); return id;
-      }
+      function send() { const text = input.value.trim(); if (!text) return; input.value = ''; input.style.height = 'auto'; addUser(text); const tid = addTyping(); setTimeout(() => { removeTyping(tid); addBot(getReply(text)); }, 600 + Math.random() * 400); }
+      function addBot(html) { const d = document.createElement('div'); d.className = 'msg'; d.innerHTML = `<div class="msg-av bot"><svg width="14" height="14" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" stroke="#FFD100" stroke-width="8"/><circle cx="50" cy="50" r="14" fill="#FFD100"/><line x1="50" y1="6" x2="50" y2="94" stroke="#FFD100" stroke-width="6"/><line x1="6" y1="50" x2="94" y2="50" stroke="#FFD100" stroke-width="6"/></svg></div><div class="msg-bbl">${html}</div>`; msgs.appendChild(d); scrollD(); }
+      function addUser(text) { const d = document.createElement('div'); d.className = 'msg user'; d.innerHTML = `<div class="msg-av usr">U</div><div class="msg-bbl">${text}</div>`; msgs.appendChild(d); scrollD(); }
+      function addTyping() { const id = 'tp-' + Date.now(), d = document.createElement('div'); d.className = 'msg'; d.id = id; d.innerHTML = `<div class="msg-av bot"><svg width="14" height="14" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" stroke="#FFD100" stroke-width="8"/><circle cx="50" cy="50" r="14" fill="#FFD100"/></svg></div><div class="msg-bbl"><div class="typing-dots"><span></span><span></span><span></span></div></div>`; msgs.appendChild(d); scrollD(); return id; }
       function removeTyping(id) { document.getElementById(id)?.remove(); }
       function scrollD() { setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 50); }
     })();
